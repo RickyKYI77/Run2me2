@@ -7,15 +7,17 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  background: linear-gradient(45deg, #0f2027, #2c5364, #1a1a40, #3a0ca3);
-  background-size: 400% 400%;
-  animation: waterFlow 15s ease infinite;
+  background: linear-gradient(180deg, #0EC0EA, #4EA7E9, #1a2a4f);
 }
 
-@keyframes waterFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, rgba(230,230,250,0.2), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(14,192,234,0.2), transparent 60%);
+  animation: drift 30s linear infinite;
 }
 
 body::after {
@@ -23,40 +25,50 @@ body::after {
   position: absolute;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.08) 10%, transparent 60%);
-  animation: shimmer 8s linear infinite;
+  background: repeating-radial-gradient(
+    circle,
+    rgba(255,255,255,0.04) 0px,
+    rgba(255,255,255,0.02) 40px,
+    transparent 80px
+  );
+  animation: shimmer 25s linear infinite;
+}
+
+@keyframes drift {
+  0% { transform: translate(-10%, -10%); }
+  50% { transform: translate(10%, 10%); }
+  100% { transform: translate(-10%, -10%); }
 }
 
 @keyframes shimmer {
-  0% { transform: translate(-30%, -30%) rotate(0deg); }
-  100% { transform: translate(30%, 30%) rotate(360deg); }
+  0% { transform: translate(0,0); }
+  50% { transform: translate(-5%, 5%); }
+  100% { transform: translate(0,0); }
 }
 
 #lyrics {
-  font-size: 2rem;
+  font-size: clamp(1.4rem, 5vw, 2.5rem);
   text-align: center;
-  max-width: 80%;
-  line-height: 1.5;
+  max-width: 85%;
+  line-height: 1.6;
+  letter-spacing: 2px;
+  padding: 0 10px;
   z-index: 2;
+  animation: breathe 4s ease-in-out infinite;
   text-shadow:
-    0 0 10px rgba(255,255,255,0.6),
-    0 0 25px rgba(120,120,255,0.8),
-    0 0 40px rgba(80,80,255,0.5);
+    0 0 10px rgba(255,255,255,0.8),
+    0 0 20px rgba(230,230,250,0.6),
+    0 0 40px rgba(78,167,233,0.5);
 }
 
-.wave span {
-  display: inline-block;
-  animation: wave 1.6s ease-in-out infinite;
-}
-
-@keyframes wave {
-  0% { transform: translateY(0px); opacity: 0.7; }
-  50% { transform: translateY(-10px); opacity: 1; }
-  100% { transform: translateY(0px); opacity: 0.7; }
+@keyframes breathe {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
 }
 
 #overlay {
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: black;
@@ -68,15 +80,17 @@ body::after {
 
 button {
   padding: 15px 30px;
-  font-size: 18px;
-  background: #3a0ca3;
+  font-size: clamp(14px, 4vw, 18px);
+  background: rgba(255,255,255,0.1);
   color: white;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 10px;
+  backdrop-filter: blur(10px);
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(100,100,255,0.6);
 }
 
 #music {
-  display: none;
+  width: 0;
+  height: 0;
+  border: none;
 }
