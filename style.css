@@ -10,6 +10,11 @@ body {
   background: linear-gradient(180deg, #0EC0EA, #4EA7E9, #1a2a4f);
 }
 
+body::before,
+body::after {
+  pointer-events: none;
+}
+
 body::before {
   content: "";
   position: absolute;
@@ -17,7 +22,8 @@ body::before {
   height: 200%;
   background: radial-gradient(circle at 30% 30%, rgba(230,230,250,0.2), transparent 60%),
               radial-gradient(circle at 70% 70%, rgba(14,192,234,0.2), transparent 60%);
-  animation: drift 30s linear infinite;
+  animation: drift 35s linear infinite;
+  z-index: 0;
 }
 
 body::after {
@@ -31,7 +37,8 @@ body::after {
     rgba(255,255,255,0.02) 40px,
     transparent 80px
   );
-  animation: shimmer 25s linear infinite;
+  animation: shimmer 30s linear infinite;
+  z-index: 0;
 }
 
 @keyframes drift {
@@ -75,7 +82,7 @@ body::after {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 100;
 }
 
 button {
@@ -87,6 +94,7 @@ button {
   border-radius: 10px;
   backdrop-filter: blur(10px);
   cursor: pointer;
+  z-index: 101;
 }
 
 #music {
