@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: linear-gradient(45deg, #0f2027, #2c5364, #1a1a40, #3a0ca3);
+  background-size: 400% 400%;
+  animation: waterFlow 15s ease infinite;
+}
+
+@keyframes waterFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 60%);
+  animation: shimmer 6s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { transform: translate(-25%, -25%) rotate(0deg); }
+  100% { transform: translate(25%, 25%) rotate(360deg); }
+}
+
+#lyrics {
+  font-size: 2rem;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.5;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5),
+               0 0 20px rgba(100,100,255,0.6);
+  z-index: 2;
+}
+
+.wave span {
+  display: inline-block;
+  animation: wave 1.5s infinite;
+}
+
+@keyframes wave {
+  0% { transform: translateY(0px); opacity: 0.7; }
+  50% { transform: translateY(-10px); opacity: 1; }
+  100% { transform: translateY(0px); opacity: 0.7; }
+}
+
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #3a0ca3;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#music {
+  display: none;
+}
